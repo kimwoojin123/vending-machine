@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing: border-box;}
+
+    #root {
+      display:flex;
+      height:100vh;
+      justify-content: center;
+      align-items: center;
+    }
+
+    ul{
+      display: flex;
+      width:40vw;
+      height:60vh;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-content: space-around;
+    }
+
+
+    li {
+      list-style-type: none;
+      background: rgba(241, 241, 241, 0.70);
+      width: 7vw;
+      height:13vh;
+      cursor: pointer;
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border-radius: 20px;
+    }
+
+    li:hover {
+      background: lightgray;
+    }
+
+    
+
+
+    span{
+      position: relative;
+      color : #1186DB;
+      font-family: Jua;
+      font-size:50px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+
+
+    button{
+      width:8vw;
+      height:16vh;
+      background-color: #F66;
+    }
+
+
+    #root > ul > li > div:nth-child(1) {
+      font-size: 55px;
+      width:100px;
+      height:100px;
+      background-size: cover;
+      margin-top: 1vh;
+    }
+    #root > ul > li > div:nth-child(3) {
+      position :relative;
+      right:2.6vw;
+    }
+
+    #root > div:nth-child(2) {
+      width:0.3vw;
+      height:60vh;
+      background-color: lightgray;
+      margin-left:4vw;
+    }
+
+    #root > div:nth-child(3) {
+      width:30vw;
+      height:60vh;
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #root > div:nth-child(3) > p {
+      color: #F66;
+      width:25vw;
+      text-align: center;
+      font-family: Jua;
+      font-size: 50px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      margin-bottom : 3vh;
+    }
+
+    #root > div:nth-child(3) > input:nth-child(3) {
+      width:20vw;
+      height: 4vh;
+      margin-bottom: 4vh;
+      border-radius: 10px;
+      background: #F1F1F1;
+      box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.10);
+      padding-left: 1vw;
+      border: none;
+    }
+
+    #root > div:nth-child(3) > input:nth-child(4) {
+      background-color: #F66;
+      width:20vh;
+      height: 20vh;
+      border-radius: 200px;
+      color: #FFF;
+      font-family: Jua;
+      font-size: 45px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      border: none;
+      cursor: pointer;
+    }
+
+
+
+
+    .switchContainer {
+    position: relative;
+    display:flex;
+    width: 20vw;
+    height: 3vh;
+    text-align: center;
+    align-items: center;
+    bottom:4vw;
+    font-family: fantasy;
+    }
+    
+    #switch {
+      position: absolute;
+      display: none;
+    }
+    #switch2 {
+      position: absolute;
+      display: none;
+    }
+
+    .switch_label {
+      position: relative;
+      cursor: pointer;
+      display: inline-block;
+      width: 4vw;
+      height: 4vh;
+      background: #fff;
+      border: 2px solid #daa;
+      border-radius: 20px;
+      transition: 0.2s;
+      margin-top: 0.3vh;
+      margin-right: 1vw;
+      margin-left: 0.5vw;
+    }
+
+    .switch_label:hover {
+      background: #efefef;
+    }
+
+    .onf_btn {
+      position: absolute;
+      top: 0.3vh;;
+      left: 0.15vw;
+      display: inline-block;
+      width: 1.5vw;
+      height: 3vh;
+      border-radius: 20px;
+      background: #daa;
+      transition: 0.2s;
+    }
+
+
+    #switch:checked+.switch_label {
+      background: #c44;
+      border: 2px solid #c44;
+    }
+
+    #switch:checked+.switch_label:hover {
+      background: #e55;
+    }
+
+
+    #switch:checked+.switch_label .onf_btn {
+      left: 2.2vw;
+      background: #fff;
+      box-shadow: 1px 2px 3px #00000020;
+    }
+
+    #switch2:checked+.switch_label {
+      background: #c44;
+      border: 2px solid #c44;
+    }
+
+    #switch2:checked+.switch_label:hover {
+      background: #e55;
+    }
+
+
+    #switch2:checked+.switch_label .onf_btn {
+      left: 2.2vw;
+      background: #fff;
+      box-shadow: 1px 2px 3px #00000020;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div id="root">
+    <ul>
+
+    </ul>
+    <div></div>
+    <div>
+      <div class="switchContainer">
+        <input type="checkbox" id="switch">dark mode
+        <label for="switch" class="switch_label">
+          <span class="onf_btn"></span>
+        </label>
+        <input type="checkbox" id="switch2">random mode
+        <label for="switch2" class="switch_label">
+          <span class="onf_btn"></span>
+        </label>
+      </div>
+      <p>Green Academy Vending Machine</p>
+      <input type="text" id="money" placeholder="금액을 입력하세요.">
+      <input type="submit" id="pick" value="뽑기!">
+    </div>
+  </div>
+
+  <script>
+    let liPrice = [
+      "3000원",
+      "1500원",
+      "900원",
+      "1900원",
+      "300원",
+      "700원",
+      "1200원",
+      "2200원",
+      "1000원",
+      "1800원",
+      "2300원",
+      "1100원",
+      "800원",
+      "2000원",
+      "3100원",
+      "1900원",
+      "1500원",
+      "100원",
+      "1600원",
+      "900원"
+    ]
+
+    let liImoji = [
+      "😗",
+      "🤪",
+      "🤓",
+      "😋",
+      "🧐",
+      "😑",
+      "🥱",
+      "🤗",
+      "🥴",
+      "🤑",
+      "🤠",
+      "🥰",
+      "😌",
+      "👽",
+      "💀",
+      "🙄",
+      "🤖",
+      "🐠",
+      "🍗", 
+      "🍔"
+    ]
+
+    let root = document.getElementById('root');
+    let ul = root.children[0];
+
+    let li = document.getElementsByTagName('li')
+    for(let i = 0; i <liPrice.length; i++){
+      let createLi = document.createElement('li');
+      ul.appendChild(createLi);
+    };
+    
+
+    for (let j = 0; j <3; j++) {
+      for(let i = 0; i < liPrice.length; i++) {
+        let createDiv = document.createElement('div');
+        li[i].appendChild(createDiv);
+      }
+    };
+
+    
+
+    for(let i = 0; i <liPrice.length; i++){
+     let liDiv = document.body.children[0].children[0].children[i];
+      liDiv.children[0].textContent = liImoji[i];
+      liDiv.children[1].textContent = liPrice[i];
+      liDiv.children[2].textContent = i+1;
+    };
+
+    
+
+    let money = document.getElementById('money');
+    let pick = document.getElementById('pick');
+
+    let sum = 0;
+    let imoSum = "";
+   
+    for(let i = 0; i <liPrice.length; i++){
+       let li = document.getElementsByTagName('li');
+         li[i].addEventListener('click', function(eventTarget){
+          if(li[i].style.backgroundColor !== 'indianred'){
+            temp = parseInt(li[i].children[1].textContent);
+            temp2 = li[i].children[0].textContent;
+            sum += temp;
+            imoSum += temp2;
+          } else {
+            temp = null;
+          }
+          if(eventTarget.currentTarget.style.backgroundColor !== 'indianred'){
+            eventTarget.currentTarget.style.backgroundColor = 'indianred';
+          } else {
+           eventTarget.currentTarget.style.backgroundColor = "rgba(241, 241, 241, 0.70)"
+          }
+      })};
+    
+
+
+
+      pick.addEventListener("click", function(){
+        if(money.value - sum < 0) {
+          root.style.filter = "blur(5px)";
+          let createSpan = document.createElement('span');
+          document.body.appendChild(createSpan);
+          let span = document.body.children[2];
+          span.textContent = "금액이 부족합니다.";
+          span.style.top = "-55vh";
+          span.style.left = "35vw"; 
+          event.stopPropagation();
+          defaulty();
+        } else {
+            root.style.filter = "blur(5px)";
+            let createSpan = document.createElement('span');
+            document.body.appendChild(createSpan);
+            let span = document.body.children[2];
+            span.textContent = `${imoSum}(를) 얻었다!`;
+            span.style.top = "-60vh";
+            span.style.left = "35vw";
+            let createBtn = document.createElement('button');
+            document.body.appendChild(createBtn);
+            let btn = document.body.children[3];
+            btn.textContent = "잔돈";
+            btn.style.top = "-45vh";
+            btn.style.position = "relative";
+            btn.style.borderRadius = "200px";
+            btn.style.left = "22vw";
+            
+            btn.addEventListener('click', function(){
+              if(money.value - sum === 0) {
+                span.textContent = "잔돈이 없습니다!";
+                span.style.top = "-55vh";
+                btn.remove();
+                defaulty();
+              } else {
+                span.textContent = `${money.value - sum}원이 남았습니다!`;
+                span.style.top = "-55vh";
+                btn.remove();
+                defaulty();
+              }
+            })
+          }
+        });
+
+        
+
+
+      function defaulty() {
+        root.addEventListener('click', function(){
+          location.reload();
+        })
+       };
+
+
+      let dark = document.getElementById('switch')
+      let darkText = root.children[2].children[0]
+    
+      dark.addEventListener('click', function(){
+        if(root.style.backgroundColor === ""){
+        root.style.backgroundColor = "black";
+        darkText.style.color = "white";
+      } else {
+        root.style.backgroundColor = "";
+        darkText.style.color = "black";
+      }
+    });
+      
+    
+      let random = document.getElementById('switch2')
+      
+       
+
+
+
+    console.log(window);
+  
+    
+
+  </script>
+</body>
+</html>
