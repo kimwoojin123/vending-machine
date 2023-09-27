@@ -326,6 +326,9 @@
     let sum = 0;
     let imoSum = "";
    
+
+
+    money.addEventListener('change', function(){
     for(let i = 0; i <liPrice.length; i++){
        let li = document.getElementsByTagName('li');
          li[i].addEventListener('click', function(eventTarget){
@@ -342,8 +345,12 @@
           } else {
            eventTarget.currentTarget.style.backgroundColor = "rgba(241, 241, 241, 0.70)"
           }
-      })};
+      })};})
     
+
+
+
+
 
 
 
@@ -415,8 +422,14 @@
     });
       
     
-      let random = document.getElementById('switch2')
-      
+    let random = document.getElementById('switch2')
+    random.addEventListener('click', function(){
+        if(ul.style.display !== "none"){
+        ul.style.display = "none";
+      } else {
+        ul.style.display = "";
+      }
+     })
        
 
 
