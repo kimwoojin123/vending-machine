@@ -63,6 +63,26 @@
       width:8vw;
       height:16vh;
       background-color: #F66;
+      border-radius: 100px;
+      border : none;
+      color : white;
+      font-size: 28px;
+      cursor: pointer;
+      margin-top : 1.5vh;
+    }
+
+    section {
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width:40vw;
+      height:60vh;
+    }
+
+    article {
+      display:flex;
+      flex-wrap: wrap;
     }
 
 
@@ -73,19 +93,37 @@
       background-size: cover;
       margin-top: 1vh;
     }
+
     #root > ul > li > div:nth-child(3) {
       position :relative;
       right:2.6vw;
     }
 
-    #root > div:nth-child(2) {
+    #root > section > article > li {
+      margin-left : 0.2vw;
+    }
+
+
+    #root > section > article > li > div:nth-child(1) {
+      font-size: 55px;
+      width:100px;
+      height:100px;
+      background-size: cover;
+      margin-top: 1vh;
+    }
+    #root > section > article > li > div:nth-child(3) {
+      position :relative;
+      right:2.6vw;
+    }
+
+    figure{
       width:0.3vw;
       height:60vh;
       background-color: lightgray;
       margin-left:4vw;
     }
 
-    #root > div:nth-child(3) {
+    #root > div:last-child {
       width:30vw;
       height:60vh;
       display:flex;
@@ -94,7 +132,7 @@
       align-items: center;
     }
 
-    #root > div:nth-child(3) > p {
+    #root > div:last-child > p {
       color: #F66;
       width:25vw;
       text-align: center;
@@ -106,7 +144,7 @@
       margin-bottom : 3vh;
     }
 
-    #root > div:nth-child(3) > input:nth-child(3) {
+    #root > div:last-child > input:nth-child(3) {
       width:20vw;
       height: 4vh;
       margin-bottom: 4vh;
@@ -117,7 +155,7 @@
       border: none;
     }
 
-    #root > div:nth-child(3) > input:nth-child(4) {
+    #root > div:last-child > input:nth-child(4) {
       background-color: #F66;
       width:20vh;
       height: 20vh;
@@ -227,7 +265,7 @@
     <ul>
 
     </ul>
-    <div></div>
+    <figure></figure>
     <div>
       <div class="switchContainer">
         <input type="checkbox" id="switch">dark mode
@@ -320,32 +358,33 @@
 
     
 
+
+    
     let money = document.getElementById('money');
     let pick = document.getElementById('pick');
 
     let sum = 0;
     let imoSum = "";
    
-
-
     money.addEventListener('change', function(){
-    for(let i = 0; i <liPrice.length; i++){
-       let li = document.getElementsByTagName('li');
-         li[i].addEventListener('click', function(eventTarget){
-          if(li[i].style.backgroundColor !== 'indianred'){
-            temp = parseInt(li[i].children[1].textContent);
-            temp2 = li[i].children[0].textContent;
-            sum += temp;
-            imoSum += temp2;
-          } else {
-            temp = null;
-          }
-          if(eventTarget.currentTarget.style.backgroundColor !== 'indianred'){
-            eventTarget.currentTarget.style.backgroundColor = 'indianred';
-          } else {
-           eventTarget.currentTarget.style.backgroundColor = "rgba(241, 241, 241, 0.70)"
-          }
-      })};})
+      for(let i = 0; i <liPrice.length; i++){
+        let li = document.getElementsByTagName('li');
+          li[i].addEventListener('click', function(eventTarget){
+            if(li[i].style.backgroundColor !== 'indianred'){
+              temp = parseInt(li[i].children[1].textContent);
+              temp2 = li[i].children[0].textContent;
+              sum += temp;
+              imoSum += temp2;
+            } else {
+              temp = null;
+            }
+            if(eventTarget.currentTarget.style.backgroundColor !== 'indianred'){
+              eventTarget.currentTarget.style.backgroundColor = 'indianred';
+            } else {
+            eventTarget.currentTarget.style.backgroundColor = "rgba(241, 241, 241, 0.70)"
+            }
+      })}});
+  
     
 
 
@@ -353,7 +392,7 @@
 
 
 
-
+      //뽑기버튼 클릭이벤트
       pick.addEventListener("click", function(){
         if(money.value - sum < 0) {
           root.style.filter = "blur(5px)";
@@ -400,7 +439,7 @@
 
         
 
-
+      // 페이지 새로고침 함수
       function defaulty() {
         root.addEventListener('click', function(){
           location.reload();
@@ -408,6 +447,8 @@
        };
 
 
+
+      //다크모드 토글버튼 클릭이벤트
       let dark = document.getElementById('switch')
       let darkText = root.children[2].children[0]
     
@@ -421,13 +462,31 @@
       }
     });
       
-    
+
+
+    // 랜덤모드 토글버튼클릭 이벤트
     let random = document.getElementById('switch2')
+
     random.addEventListener('click', function(){
         if(ul.style.display !== "none"){
         ul.style.display = "none";
+        let createSec = document.createElement('section');
+        root.prepend(createSec);
+        let section = document.querySelector('section')
+        let createArt = document.createElement('article')
+        section.prepend(createArt)
+        let createBtn = document.createElement('button')
+        section.appendChild(createBtn)
+        createBtn.textContent = "Random"
+        let article = document.querySelector('article')
+        let btn = document.querySelector('button')
+        // 랜덤모드에서 뽑기
+        btn.addEventListener('click', function(){
+          article.appendChild(li[Math.floor(Math.random() * li.length)])
+        })
       } else {
         ul.style.display = "";
+        defaulty();
       }
      })
        
