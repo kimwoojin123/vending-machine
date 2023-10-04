@@ -334,12 +334,14 @@
     let ul = root.children[0];
 
     let li = document.getElementsByTagName('li')
+
+    // ul태그 안에 상품목록(li) 만들기
     for(let i = 0; i <liPrice.length; i++){
       let createLi = document.createElement('li');
       ul.appendChild(createLi);
     };
     
-
+    // 상품목록 내부를 3구역으로 나누기
     for (let j = 0; j <3; j++) {
       for(let i = 0; i < liPrice.length; i++) {
         let createDiv = document.createElement('div');
@@ -348,7 +350,7 @@
     };
 
     
-
+    // 상품목록 내부 3구역에 각각의 내용 집어넣기
     for(let i = 0; i <liPrice.length; i++){
      let liDiv = document.body.children[0].children[0].children[i];
       liDiv.children[0].textContent = liImoji[i];
@@ -365,10 +367,11 @@
 
     let sum = 0;
     let imoSum = "";
-   
+   // 돈이 입력되었을때만 동작하게 하기
     money.addEventListener('change', function(){
       for(let i = 0; i <liPrice.length; i++){
         let li = document.getElementsByTagName('li');
+          // 상품리스트 클릭했을때 값 가져오기
           li[i].addEventListener('click', function(eventTarget){
             if(li[i].style.backgroundColor !== 'indianred'){
               temp = parseInt(li[i].children[1].textContent);
@@ -378,6 +381,7 @@
             } else {
               temp = null;
             }
+            // 클릭했을때 배경색 바꾸기
             if(eventTarget.currentTarget.style.backgroundColor !== 'indianred'){
               eventTarget.currentTarget.style.backgroundColor = 'indianred';
             } else {
@@ -420,7 +424,7 @@
             btn.style.position = "relative";
             btn.style.borderRadius = "200px";
             btn.style.left = "22vw";
-            
+            // 잔돈버튼 눌렀을때 분기
             btn.addEventListener('click', function(){
               if(money.value - sum === 0) {
                 span.textContent = "잔돈이 없습니다!";
